@@ -1,11 +1,35 @@
 const scripts = [
   {
     src: '/data/reader/libs/enhanced/highlight.min.js',
-    callback: () => {
+    callback: async () => {
+      const files = [
+        'standalone',
+        'parser-babel',
+        'parser-graphql',
+        'parser-html',
+      ]
+      const [prettierImport, ...pluginsImport] = await Promise.all(
+        files.map((fileName) =>
+          import(
+            `/data/reader/libs/enhanced/prettier/esm/${fileName}.mjs`
+          )
+        )
+      )
+
+      const prettier = prettierImport.default
+
+      function format(code, language) {
+        return prettier.format(code, {
+          parser: language,
+          plugins: pluginsImport.map((plugin) => plugin.default),
+        })
+      }
+
       const pres = document.querySelectorAll('pre')
+
       for (let pre of pres) {
         const code = document.createElement('code')
-        code.textContent = pre.innerText
+        code.textContent = pre.textContent
         const newPre = pre.cloneNode()
         newPre.appendChild(code)
         pre.replaceWith(newPre)
