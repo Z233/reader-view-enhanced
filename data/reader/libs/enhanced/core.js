@@ -29,7 +29,7 @@ const scripts = [
 
       for (let pre of pres) {
         const code = document.createElement('code')
-        code.textContent = pre.textContent
+        code.textContent = pre.innerText
         const newPre = pre.cloneNode()
         newPre.appendChild(code)
         pre.replaceWith(newPre)
