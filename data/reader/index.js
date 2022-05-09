@@ -618,25 +618,38 @@ shortcuts.render = () => {
 /* copy as html */
 {
   const span = document.createElement('span')
-  span.classList.add('icon-copy')
-  span.id = 'copy-button'
+  span.classList.add('icon-brain')
+  span.id = 'import-supermemo-button'
 
   span.onclick = () => {
     const body = iframe.contentDocument.body
+
     const articleRe =
       /(?<=<!-- for IntersectionObserver -->).*(?=<!-- for IntersectionObserver -->)/s
     const articleHTML = articleRe.exec(body.innerHTML)[0]
 
-    const type = 'text/html'
+    const articleTitleEl = body.querySelector('#reader-title')
+    const articleTitle = articleTitleEl.textContent
+
+    const articleURLEl = body.querySelector('#reader-domain')
+    const articleURL = articleURLEl.href
+
+    const type = 'text/plain'
     const blob = new Blob([articleHTML], { type })
     const data = [new ClipboardItem({ [type]: blob })]
 
     navigator.clipboard.write(data).then(
       function () {
-        alert('Copy successed!')
+        window.open(
+          `quicker:runaction:d6a5f2e3-a615-4cfa-914b-ebbd320c2e26?title=${encodeURIComponent(
+            articleTitle
+          )}&url=${encodeURIComponent(articleURL)}`,
+          '_self'
+        )
       },
       function () {
         /* failure */
+        alert('Import Fail!')
       }
     )
   }
