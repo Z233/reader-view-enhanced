@@ -7,7 +7,7 @@ Origin: https://github.com/rNeomy/reader-view
   ([pangu.js](https://github.com/vinta/pangu.js))
 - traditional chinese convert to simplified chinese
   ([opencc-js](https://github.com/nk2028/opencc-js))
-- import to SuperMemo 18([Quicker script installed needed](https://getquicker.net/Sharedaction?code=402aef36-2e5f-450d-5b84-08da34faf1d5))
+- import to SuperMemo 18 ([Quicker script installed needed](https://getquicker.net/Sharedaction?code=402aef36-2e5f-450d-5b84-08da34faf1d5))
   
 ### Custom Styling
 
