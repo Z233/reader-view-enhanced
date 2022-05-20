@@ -122,6 +122,9 @@ function save() {
     'context-open-in-reader-view-bg': document.getElementById('context-open-in-reader-view-bg').checked,
     'context-switch-to-reader-view': document.getElementById('context-switch-to-reader-view').checked,
 
+    // Enhanced Start
+    'import-supermemo-button': document.getElementById('import-supermemo-button').checked,
+    // End
     'printing-button': document.getElementById('printing-button').checked,
     'screenshot-button': document.getElementById('screenshot-button').checked,
     'note-button': document.getElementById('note-button').checked,
@@ -153,6 +156,9 @@ function restore() {
   document.getElementById('user-css').value = config.prefs['user-css'];
   document.getElementById('user-action').value = JSON.stringify(config.prefs['user-action'], null, '  ');
 
+  // Enhanced Start
+  document.getElementById('import-supermemo-button').checked = config.prefs['import-supermemo-button'];
+  // End
   document.getElementById('printing-button').checked = config.prefs['printing-button'];
   document.getElementById('screenshot-button').checked = config.prefs['screenshot-button'];
   document.getElementById('note-button').checked = config.prefs['note-button'];

@@ -58,6 +58,7 @@ Original Page: [URL]`,
     'guide': 3, // guide height is n times font-size; zero means no guide
     'guide-timeout': 2000, // ms
     'mode': localStorage.getItem('mode') || 'sepia',
+    'import-supermemo-button': localStorage.getItem('import-supermemo-button') !== 'false',
     'printing-button': localStorage.getItem('printing-button') !== 'false',
     'screenshot-button': localStorage.getItem('screenshot-button') === 'true',
     'note-button': localStorage.getItem('note-button') !== 'false',

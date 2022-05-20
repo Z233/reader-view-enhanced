@@ -618,7 +618,7 @@ shortcuts.render = () => {
 /* copy as html */
 {
   const span = document.createElement('span')
-  span.classList.add('icon-brain')
+  span.classList.add('icon-brain', 'hidden')
   span.id = 'import-supermemo-button'
 
   span.onclick = () => {
@@ -1268,6 +1268,11 @@ config.onChanged.push((ps) => {
 config.load(() => {
   document.body.dataset.mode = config.prefs.mode
   document.body.dataset.toolbar = config.prefs['toggle-toolbar']
+  if (config.prefs['import-supermemo-button']) {
+    document
+      .getElementById('import-supermemo-button')
+      .classList.remove('hidden')
+  }
   if (config.prefs['printing-button']) {
     document
       .getElementById('printing-button')
