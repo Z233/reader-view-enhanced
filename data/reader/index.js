@@ -615,7 +615,28 @@ shortcuts.render = () => {
   })
 }
 
-/* copy as html */
+/* bionic reading */
+{
+  const span = document.createElement('span')
+  span.classList.add('icon-read')
+  span.id = 'fastread-button'
+
+  const script = document.createElement('script')
+  script.src = 'libs/fastread/index.js'
+  document.body.appendChild(script)
+
+  span.onclick = () => {
+    fastreadifyPage(iframe.contentDocument)
+  }
+  shortcuts.push({
+    id: 'fastread',
+    action: span.onclick,
+    span,
+  })
+  document.getElementById('toolbar').appendChild(span)
+}
+
+/* import to supermemo */
 {
   const span = document.createElement('span')
   span.classList.add('icon-brain', 'hidden')

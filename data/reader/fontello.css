@@ -103,7 +103,3 @@
 .icon-note:before {
   content: '\f249';
 } /* '' */
-.icon-brain:before {
-  content: '\e6f0';
-  transform: scale(1.4);
-}
