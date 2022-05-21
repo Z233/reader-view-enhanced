@@ -38,7 +38,9 @@ function fastreadifyPage(contentDocument) {
   }
 
   chrome.storage.sync.get(['algorithm'], (data) => {
-    var algorithm = parseAlgorithm(data.algorithm) || defaultAlgorithm
+    const algorithm = parseAlgorithm(
+      data.algorithm || defaultAlgorithm
+    )
 
     function createStylesheet() {
       chrome.storage.sync.get(
@@ -102,33 +104,42 @@ function fastreadifyPage(contentDocument) {
       'my',
     ]
 
-    function fastreadifyWord(word) {
+    function fastreadifyWord(words) {
+      let ret = ''
+
+      words = words.split('-')
+
+      for (let i = 0; i < words.length; i++) {
+        const word = words[i]
+
+        var index = word.length - 1
+        var numBold = 1
+
+        if (word.length <= 3 && algorithm.exclude) {
+          if (isCommon(word)) return word
+        }
+
+        if (index < algorithm.sizes.length) {
+          numBold = algorithm.sizes[index]
+        } else {
+          numBold = Math.ceil(word.length * algorithm.restRatio)
+        }
+
+        ret +=
+          '<span class="fastread-highlight">' +
+          word.slice(0, numBold) +
+          '</span>' +
+          '<span class="fastread-rest">' +
+          word.slice(numBold) +
+          '</span>' +
+          (i < words.length - 1 ? '-' : '')
+      }
+
       function isCommon(word) {
         return commonWords.indexOf(word) != -1
       }
 
-      var index = word.length - 1
-
-      var numBold = 1
-
-      if (word.length <= 3 && algorithm.exclude) {
-        if (isCommon(word)) return word
-      }
-
-      if (index < algorithm.sizes.length) {
-        numBold = algorithm.sizes[index]
-      } else {
-        numBold = Math.ceil(word.length * algorithm.restRatio)
-      }
-
-      return (
-        '<span class="fastread-highlight">' +
-        word.slice(0, numBold) +
-        '</span>' +
-        '<span class="fastread-rest">' +
-        word.slice(numBold) +
-        '</span>'
-      )
+      return ret
     }
 
     function fastreadifyText(text) {
