@@ -107,7 +107,7 @@ function fastreadifyPage(contentDocument) {
     function fastreadifyWord(words) {
       let ret = ''
 
-      words = words.split(/(-|\.|,|')/)
+      words = words.split(/(-|\.|,|'|“|”|;|\(|\))/)
 
       for (const word of words) {
         if (word.length >= 1) {
@@ -132,7 +132,7 @@ function fastreadifyPage(contentDocument) {
             word.slice(numBold) +
             '</span>'
         } else {
-          ret += word
+          ret += `<span class="fastread-highlight">${word}</span>`
         }
       }
 
@@ -158,6 +158,8 @@ function fastreadifyPage(contentDocument) {
       if (
         node.tagName === 'SCRIPT' ||
         node.tagName === 'STYLE' ||
+        node.tagName === 'PRE' ||
+        node.tagName === 'CODE' ||
         node.nodeType === 8
       )
         return
