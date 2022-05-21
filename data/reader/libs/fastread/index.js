@@ -107,32 +107,33 @@ function fastreadifyPage(contentDocument) {
     function fastreadifyWord(words) {
       let ret = ''
 
-      words = words.split('-')
+      words = words.split(/(-|\.|,|')/)
 
-      for (let i = 0; i < words.length; i++) {
-        const word = words[i]
+      for (const word of words) {
+        if (word.length >= 1) {
+          var index = word.length - 1
+          var numBold = 1
 
-        var index = word.length - 1
-        var numBold = 1
+          if (word.length <= 3 && algorithm.exclude) {
+            if (isCommon(word)) return word
+          }
 
-        if (word.length <= 3 && algorithm.exclude) {
-          if (isCommon(word)) return word
-        }
+          if (index < algorithm.sizes.length) {
+            numBold = algorithm.sizes[index]
+          } else {
+            numBold = Math.ceil(word.length * algorithm.restRatio)
+          }
 
-        if (index < algorithm.sizes.length) {
-          numBold = algorithm.sizes[index]
+          ret +=
+            '<span class="fastread-highlight">' +
+            word.slice(0, numBold) +
+            '</span>' +
+            '<span class="fastread-rest">' +
+            word.slice(numBold) +
+            '</span>'
         } else {
-          numBold = Math.ceil(word.length * algorithm.restRatio)
+          ret += word
         }
-
-        ret +=
-          '<span class="fastread-highlight">' +
-          word.slice(0, numBold) +
-          '</span>' +
-          '<span class="fastread-rest">' +
-          word.slice(numBold) +
-          '</span>' +
-          (i < words.length - 1 ? '-' : '')
       }
 
       function isCommon(word) {
