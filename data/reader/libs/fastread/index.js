@@ -37,9 +37,9 @@ function fastreadifyPage(contentDocument) {
     }
   }
 
-  chrome.storage.sync.get(['algorithm'], (data) => {
+  chrome.storage.local.get(['fastread-algorithm'], (data) => {
     const algorithm = parseAlgorithm(
-      data.algorithm || defaultAlgorithm
+      data['fastread-algorithm'] || defaultAlgorithm
     )
 
     function createStylesheet() {

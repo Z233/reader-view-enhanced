@@ -124,6 +124,7 @@ function save() {
 
     // Enhanced Start
     'import-supermemo-button': document.getElementById('import-supermemo-button').checked,
+    'fastread-algorithm': document.getElementById('fastread-algorithm').value || '+ 0 1 2 3 3 0.7',
     // End
     'printing-button': document.getElementById('printing-button').checked,
     'screenshot-button': document.getElementById('screenshot-button').checked,
@@ -158,6 +159,7 @@ function restore() {
 
   // Enhanced Start
   document.getElementById('import-supermemo-button').checked = config.prefs['import-supermemo-button'];
+  document.getElementById('fastread-algorithm').value = config.prefs['fastread-algorithm'];
   // End
   document.getElementById('printing-button').checked = config.prefs['printing-button'];
   document.getElementById('screenshot-button').checked = config.prefs['screenshot-button'];

@@ -41,6 +41,7 @@ if (typeof config === 'undefined') {
     'text-align': true,
     'reader-mode': false,
     'show-icon': true,
+    'fastread-algorithm': '+ 0 1 2 3 3 0.7',
     'title': '[ORIGINAL] :: [BRAND]',
     'tts-delay': 300,
     'tts-maxlength': 160,
