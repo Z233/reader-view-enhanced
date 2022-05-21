@@ -1,7 +1,7 @@
 // https://github.com/ahrm/chrome-fastread/blob/main/utils.js
 let defaultHighlightSheet = 'font-weight: 600;'
 let defaultRestSheet = 'opacity: 0.8;'
-let defaultAlgorithm = '- 0 1 1 2 0.4'
+let defaultAlgorithm = '+ 0 1 2 3 3 0.7'
 
 function fastreadifyPage(contentDocument) {
   const document = contentDocument
