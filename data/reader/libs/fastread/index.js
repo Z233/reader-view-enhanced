@@ -1,7 +1,7 @@
 // https://github.com/ahrm/chrome-fastread/blob/main/utils.js
 let defaultHighlightSheet = 'font-weight: 600;'
-let defaultRestSheet = 'opacity: 0.8;'
-let defaultAlgorithm = '+ 0 1 2 3 3 0.7'
+let defaultRestSheet = 'opacity: 0.6;'
+let defaultAlgorithm = '+ 1 1 2 3 3 4 5 6 7 0.75'
 
 function fastreadifyPage(contentDocument) {
   const document = contentDocument
@@ -107,7 +107,7 @@ function fastreadifyPage(contentDocument) {
     function fastreadifyWord(words) {
       let ret = ''
 
-      words = words.split(/(-|\.|,|'|“|”|;|\(|\))/)
+      words = words.split(/(-|\.|,|'|“|”|;|\(|\)|—)/)
 
       for (const word of words) {
         if (word.length >= 1) {
